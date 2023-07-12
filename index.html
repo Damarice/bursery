@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bursary Application</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="imges/nini.jpg" alt="Kericho County">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="logout.html">Logout</a></li>
+        <li><a href="applictionstatus.html">Application Status</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section id="hero">
+      <div class="hero-content">
+        <h1>Apply for Bursary</h1>
+        <p>Invest in your education with our bursary program.</p>
+        <a href="#apply" class="btn-apply">Apply Now</a>
+      </div>
+    </section>
+    
+    <section id="about">
+      <div class="about-content">
+        <h2>About Bursary Program</h2>
+        <p>The Bursary Program is dedicated to supporting students in their pursuit of education. We believe that everyone should have access to quality education, regardless of their financial background.</p>
+        <p>Our bursary program offers financial assistance to students who demonstrate academic excellence, financial need, and a commitment to community involvement.</p>
+      </div>
+    </section>
+    
+    <section id="stories">
+      <h2>Inspiring Stories</h2>
+      <div class="story">
+        <div class="story-img">
+          <img src="images/john.jpg" alt="John's Success Story">
+        </div>
+        <div class="story-content">
+          <h3>John's Success Story</h3>
+          <p>"Thanks to the bursary I received, I was able to complete my studies and secure a job in my desired field. The financial support made all the difference in my educational journey, and I'm grateful for the opportunity."</p>
+        </div>
+      </div>
+      <div class="story">
+        <div class="story-img">
+          <img src="images/sarah.jpg" alt="Sarah's Journey">
+        </div>
+        <div class="story-content">
+          <h3>Sarah's Journey</h3>
+          <p>"Being a first-generation college student, I faced many challenges. The bursary program not only provided financial support but also offered mentorship and guidance. I can confidently say that it played a vital role in shaping my future."</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="apply">
+      <h2>Apply for Bursary</h2>
+  
+      <form id="bursaryForm">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="university">University:</label>
+          <input type="text" id="university" name="university" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="gpa">GPA:</label>
+          <input type="text" id="gpa" name="gpa" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="essay">Personal Essay:</label>
+          <textarea id="essay" name="essay" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <input type="submit" value="Submit" class="btn-submit">
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Bursary Application. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
