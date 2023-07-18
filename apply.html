@@ -24,7 +24,8 @@
       <p>Please download the form, fill it out, and then submit the completed form using the upload option below.</p>
 
       <div class="form-group">
-        <a href="D:\bursery\assets" download>Download Form</a>
+        <a href="/assets/form.pdf" download>Download Form</a>
+
       </div>
 
       <form id="bursaryForm" enctype="multipart/form-data">
@@ -70,5 +71,32 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Function to generate a random 8-character alphanumeric string
+    function generateUniqueId() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < 8; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+      }
+      return result;
+    }
+
+    // Add event listener to the form submission
+    document.getElementById('bursaryForm').addEventListener('submit', function(event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Generate a unique ID
+      const uniqueId = generateUniqueId();
+
+      // Set the unique ID to the hidden field
+      document.getElementById('uniqueId').value = uniqueId;
+
+      // Submit the form
+      this.submit();
+    });
+  </script>
 </body>
 </html>
