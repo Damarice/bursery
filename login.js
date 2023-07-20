@@ -23,6 +23,7 @@ function registerFormSubmit(event) {
   // Display a success message (you can modify this as per your requirements)
   alert('Registration successful! You can now log in using your email and password.');
 
-  // Redirect to the login page after successful registration
-  window.location.href = 'apply.html';
+  // Redirect to the index page after successful registration
+  window.location.href = 'index.html';
 }
+
