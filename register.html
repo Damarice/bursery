@@ -54,6 +54,43 @@
     <p>&copy; 2023 Bursary Application. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Function to handle the registration form submission
+    function registerFormSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get the registration form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Save the user registration details to the local database
+      saveUserRegistration(name, email, password);
+      
+      // Clear the form after successful registration
+      document.getElementById('registerForm').reset();
+      
+      // Display a success message (you can modify this as per your requirements)
+      alert('Registration successful!');
+    }
+
+    // Function to save user registration details to the local database
+    function saveUserRegistration(name, email, password) {
+      // Retrieve existing user registrations from the local database (if any)
+      let registrations = JSON.parse(localStorage.getItem('userRegistrations')) || [];
+      
+      // Create a new user object
+      const user = { name, email, password };
+      
+      // Add the new user object to the existing registrations array
+      registrations.push(user);
+      
+      // Save the updated registrations array back to the local database
+      localStorage.setItem('userRegistrations', JSON.stringify(registrations));
+    }
+
+    // Attach the form submission event listener
+    document.getElementById('registerForm').addEventListener('submit', registerFormSubmit);
+  </script>
 </body>
 </html>
