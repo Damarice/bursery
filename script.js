@@ -58,3 +58,58 @@ async function registerFormSubmit(event) {
   const registerForm = document.getElementById('registerForm');
   registerForm.addEventListener('submit', registerFormSubmit);
   
+  // JavaScript code in script.js
+
+// Function to handle the "Apply Now" button click
+function handleApplyButtonClick() {
+  alert('You are now being redirected to the application page.');
+  // You can add additional code here for redirecting the user to the application page
+}
+
+// Function to initialize event listeners
+function init() {
+  // Get the "Apply Now" button
+  const applyButton = document.querySelector('.btn-apply');
+
+  // Add a click event listener to the "Apply Now" button
+  applyButton.addEventListener('click', handleApplyButtonClick);
+}
+
+// Call the initialization function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+// Function to generate a random 8-character alphanumeric string
+function generateUniqueId() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < 8; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(randomIndex);
+  }
+  return result;
+}
+
+// Function to display a success message after successful registration
+function displaySuccessMessage() {
+  // Hide the form
+  document.getElementById('apply').style.display = 'none';
+  
+  // Display the success message
+  const successMessage = document.getElementById('successMessage');
+  successMessage.style.display = 'block';
+}
+
+// Add event listener to the form submission
+document.getElementById('bursaryForm').addEventListener('submit', function(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  // Generate a unique ID (For demonstration purposes, we're using a fixed value instead of generating it)
+  const uniqueId = 'B1234567';
+  
+  // Set the unique ID to the hidden field
+  document.getElementById('uniqueId').value = uniqueId;
+
+  // Display a success message after a short delay to simulate form submission
+  setTimeout(displaySuccessMessage, 2000);
+});

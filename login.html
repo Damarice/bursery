@@ -3,6 +3,8 @@
 <head>
   <title>Bursary Application - Login</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="script.js"></script>
+  <script src="login.js"></script>
 </head>
 <body>
   <header>
@@ -19,7 +21,7 @@
   <main>
     <h2>Login</h2>
   
-    <form id="loginForm">
+    <form id="loginForm" action="index.html" method="POST">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -30,15 +32,17 @@
         <input type="password" id="password" name="password" required>
       </div>
       
-      <div class="form-group">
-        <input type="submit" value="Login" class="btn-submit">
-      </div>
+  
     </form>
+
+    <!-- Add the new button to link to index.html -->
+    <div class="button-container">
+      <a href="index.html" class="btn-home">Login</a>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2023 Bursary Application. All rights reserved.</p>
   </footer>
 </body>
-<script src="login.js"></script>
 </html>

@@ -25,10 +25,9 @@
 
       <div class="form-group">
         <a href="/assets/form.pdf" download>Download Form</a>
-
       </div>
 
-      <form id="bursaryForm" enctype="multipart/form-data">
+      <form id="bursaryForm" enctype="multipart/form-data" action="#">
         <div class="form-group">
           <label for="name">Full Name:</label>
           <input type="text" id="name" name="name" required>
@@ -49,10 +48,8 @@
           <input type="text" id="gpa" name="gpa" required>
         </div>
         
-        <div class="form-group">
-          <label for="essay">Personal Essay:</label>
-          <textarea id="essay" name="essay" required></textarea>
-        </div>
+        <!-- Hidden field to store the generated unique ID -->
+        <input type="hidden" id="uniqueId" name="uniqueId" value="">
         
         <div class="form-group">
           <label for="filledForm">Upload Filled Form:</label>
@@ -63,6 +60,11 @@
           <input type="submit" value="Submit" class="btn-submit">
         </div>
       </form>
+
+      <!-- Success message container (hidden by default) -->
+      <div id="successMessage" class="success-message" style="display: none;">
+        <p>Registration successful! You have applied for the bursary.</p>
+      </div>
     </section>
   </main>
 
@@ -70,7 +72,6 @@
     <p>&copy; 2023 Bursary Application. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
   <script>
     // Function to generate a random 8-character alphanumeric string
     function generateUniqueId() {
@@ -83,20 +84,32 @@
       return result;
     }
 
+    // Function to display a success message after successful registration
+    function displaySuccessMessage() {
+      // Hide the form
+      document.getElementById('apply').style.display = 'none';
+      
+      // Display the success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+    }
+
     // Add event listener to the form submission
     document.getElementById('bursaryForm').addEventListener('submit', function(event) {
       // Prevent the default form submission
       event.preventDefault();
 
-      // Generate a unique ID
-      const uniqueId = generateUniqueId();
-
+      // Generate a unique ID (For demonstration purposes, we're using a fixed value instead of generating it)
+      const uniqueId = 'B1234567';
+      
       // Set the unique ID to the hidden field
       document.getElementById('uniqueId').value = uniqueId;
 
-      // Submit the form
-      this.submit();
+      // Display a success message after a short delay to simulate form submission
+      setTimeout(displaySuccessMessage, 2000);
     });
   </script>
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </body>
 </html>

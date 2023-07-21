@@ -195,4 +195,35 @@ nav ul li a:hover {
       padding: 10px;
     }
   }
-  
+  /* styles.css */
+
+/* Add general button styling */
+.btn-submit,
+.btn-home {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Style the Login button */
+.btn-submit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Style the Home button */
+.btn-home {
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 10px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Hover effect for both buttons */
+.btn-submit:hover,
+.btn-home:hover {
+  background-color: #0056b3;
+}
