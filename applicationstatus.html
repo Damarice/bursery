@@ -3,6 +3,20 @@
 <head>
   <title>Bursary Application - Application Status</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    /* Styles for the pop-up container */
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -32,8 +46,9 @@
       </div>
     </form>
     
-    <div id="statusResult">
-      <!-- The application status result will be displayed here -->
+    <!-- The pop-up container -->
+    <div class="popup-container" id="popupContainer">
+      <div id="popupMessage"></div>
     </div>
   </main>
 
@@ -56,32 +71,31 @@
     // Function to generate a random message based on the message ID
     function generateRandomMessage(messageId) {
       // Replace this with your own logic to generate different messages based on the message ID.
-      // For now, we'll use a simple example with hardcoded messages.
-      const messages = [
-        'Congratulations! Your application is approved.',
-        'We are still reviewing your application. Please wait for further updates.',
-        'Unfortunately, your application has been rejected.',
-        'Your application is under consideration. We will notify you soon.'
-        // Add more messages as needed.
-      ];
-
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      return messages[randomIndex];
+      // For now, we'll use a switch statement to map specific message IDs to custom messages.
+      switch (messageId) {
+        case 'A123':
+          return 'Congratulations! You have received a scholarship award.';
+        case 'B456':
+          return 'Your application is still being processed. Please be patient.';
+        case 'C789':
+          return 'We regret to inform you that your application has been denied.';
+        default:
+          return 'Your application status is being reviewed. We will notify you soon.';
+      }
     }
 
-    // Function to display the popup message
+    // Function to display the pop-up message
     function displayPopupMessage(message) {
-      // Create the popup message container
-      const popupMessage = document.createElement('div');
-      popupMessage.className = 'popup-message';
+      const popupContainer = document.getElementById('popupContainer');
+      const popupMessage = document.getElementById('popupMessage');
       popupMessage.textContent = message;
 
-      // Add the popup message container to the body
-      document.body.appendChild(popupMessage);
+      // Show the pop-up container
+      popupContainer.style.display = 'block';
 
-      // Remove the popup after a short delay (e.g., 3 seconds)
+      // Hide the pop-up after a short delay (e.g., 3 seconds)
       setTimeout(function() {
-        popupMessage.remove();
+        popupContainer.style.display = 'none';
       }, 3000);
     }
 
@@ -98,7 +112,7 @@
       // Generate a random message based on the message ID
       const message = generateRandomMessage(messageId);
 
-      // Display the random message as a popup
+      // Display the pop-up message
       displayPopupMessage(message);
     }
 
@@ -109,4 +123,3 @@
 
 </body>
 </html>
-
