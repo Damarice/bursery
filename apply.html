@@ -13,7 +13,7 @@
         <li><a href="login.html">Login</a></li>
         <li><a href="register.html">Register</a></li>
         <li><a href="logout.html">Logout</a></li>
-        <li><a href="applictionstatus.html">Application Status</a></li>
+        <li><a href="applicationstatus.html">Application Status</a></li>
       </ul>
     </nav>
   </header>
@@ -48,7 +48,7 @@
           <input type="text" id="gpa" name="gpa" required>
         </div>
         
-        <!-- Hidden field to store the generated unique ID -->
+        <!-- Hidden field to store the generated unique ID (Application ID) -->
         <input type="hidden" id="uniqueId" name="uniqueId" value="">
         
         <div class="form-group">
@@ -61,9 +61,9 @@
         </div>
       </form>
 
-      <!-- Success message container (hidden by default) -->
-      <div id="successMessage" class="success-message" style="display: none;">
-        <p>Registration successful! You have applied for the bursary.</p>
+      <!-- Popup message container (hidden by default) -->
+      <div id="popupMessage" class="popup-message" style="display: none;">
+        <p id="popupContent"></p>
       </div>
     </section>
   </main>
@@ -73,25 +73,31 @@
   </footer>
 
   <script>
-    // Function to generate a random 8-character alphanumeric string
-    function generateUniqueId() {
+    // Function to generate a random alphanumeric string (Application ID)
+    function generateApplicationId() {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      let result = '';
+      let applicationId = '';
       for (let i = 0; i < 8; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
-        result += characters.charAt(randomIndex);
+        applicationId += characters.charAt(randomIndex);
       }
-      return result;
+      return applicationId;
     }
 
-    // Function to display a success message after successful registration
-    function displaySuccessMessage() {
-      // Hide the form
-      document.getElementById('apply').style.display = 'none';
-      
-      // Display the success message
-      const successMessage = document.getElementById('successMessage');
-      successMessage.style.display = 'block';
+    // Function to display the success message as a popup
+    function displayPopupMessage(message) {
+      // Display the popup message container
+      const popupMessage = document.getElementById('popupMessage');
+      popupMessage.style.display = 'block';
+
+      // Set the popup message content
+      const popupContent = document.getElementById('popupContent');
+      popupContent.textContent = message;
+
+      // Hide the popup after a short delay (e.g., 3 seconds)
+      setTimeout(function() {
+        popupMessage.style.display = 'none';
+      }, 100000);
     }
 
     // Add event listener to the form submission
@@ -99,14 +105,15 @@
       // Prevent the default form submission
       event.preventDefault();
 
-      // Generate a unique ID (For demonstration purposes, we're using a fixed value instead of generating it)
-      const uniqueId = 'B1234567';
+      // Generate a unique ID (Application ID)
+      const applicationId = generateApplicationId();
       
-      // Set the unique ID to the hidden field
-      document.getElementById('uniqueId').value = uniqueId;
+      // Set the application ID to the hidden field
+      document.getElementById('uniqueId').value = applicationId;
 
-      // Display a success message after a short delay to simulate form submission
-      setTimeout(displaySuccessMessage, 2000);
+      // Display the success message as a popup
+      const successMessage = `Registration successful! You have applied for the bursary. Your Application ID is: ${applicationId}`;
+      displayPopupMessage(successMessage);
     });
   </script>
 

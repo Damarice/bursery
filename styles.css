@@ -227,3 +227,23 @@ nav ul li a:hover {
 .btn-home:hover {
   background-color: #0056b3;
 }
+.success-message {
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50;
+  color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  z-index: 999;
+  display: none;
+}

@@ -1,5 +1,46 @@
 // application-status.js
 
+// Function to generate a random alphanumeric string (message ID)
+function generateRandomMessageId() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let messageId = '';
+  for (let i = 0; i < 8; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    messageId += characters.charAt(randomIndex);
+  }
+  return messageId;
+}
+
+// Function to generate a random message based on the message ID
+function generateRandomMessage(messageId) {
+  // Replace this with your own logic to generate different messages based on the message ID.
+  // For now, we'll use a simple example with hardcoded messages.
+  const messages = {
+    'ABCD1234': 'Congratulations! Your application is approved.',
+    'WXYZ5678': 'We are still reviewing your application. Please wait for further updates.',
+    'PQRS9876': 'Unfortunately, your application has been rejected.'
+    // Add more message mappings as needed.
+  };
+
+  return messages[messageId] || 'Status Not Found';
+}
+
+// Function to display the popup message
+function displayPopupMessage(message) {
+  // Create the popup message container
+  const popupMessage = document.createElement('div');
+  popupMessage.className = 'popup-message';
+  popupMessage.textContent = message;
+
+  // Add the popup message container to the body
+  document.body.appendChild(popupMessage);
+
+  // Remove the popup after a short delay (e.g., 3 seconds)
+  setTimeout(function() {
+    popupMessage.remove();
+  }, 3000);
+}
+
 // Function to handle the application status form submission
 function statusFormSubmit(event) {
   event.preventDefault(); // Prevent form submission
@@ -7,46 +48,16 @@ function statusFormSubmit(event) {
   // Get the application ID value from the form
   const applicationId = document.getElementById('applicationId').value;
 
-  // Perform application status retrieval logic from the local database
-  const applicationStatus = getApplicationStatus(applicationId);
+  // Generate a random message ID
+  const messageId = generateRandomMessageId();
 
-  // Display the application status result
-  const statusResultDiv = document.getElementById('statusResult');
-  statusResultDiv.innerHTML = `Application ID: ${applicationId}<br>Application Status: ${applicationStatus}`;
+  // Generate a random message based on the message ID
+  const message = generateRandomMessage(messageId);
+
+  // Display the random message as a popup
+  displayPopupMessage(message);
 }
 
-// Function to simulate saving application status to the local database
-function saveApplicationStatus(applicationId, status) {
-  // Save the application status to the local database
-  localStorage.setItem(applicationId, status);
-}
-
-// Function to retrieve application status from the local database
-function getApplicationStatus(applicationId) {
-  // Retrieve the application status from the local database
-  const applicationStatus = localStorage.getItem(applicationId);
-
-  // If the application ID is not found in the local database, return a default status
-  return applicationStatus || 'Status Not Found';
-}
-
-  
-  // Function to simulate retrieving application status (replace this with your own application status logic)
-  function getApplicationStatus(applicationId) {
-    // Perform application status retrieval logic here
-    // Return the application status based on the application ID
-    
-    // Example: Simulating application status retrieval with hardcoded values
-    const applicationStatuses = {
-      '123456': 'In Review',
-      '789012': 'Approved',
-      '345678': 'Rejected'
-    };
-    
-    return applicationStatuses[applicationId] || 'Not Found';
-  }
-  
-  // Add an event listener to the application status form submit event
-  const statusForm = document.getElementById('statusForm');
-  statusForm.addEventListener('submit', statusFormSubmit);
-  
+// Add an event listener to the application status form submit event
+const statusForm = document.getElementById('statusForm');
+statusForm.addEventListener('submit', statusFormSubmit);
