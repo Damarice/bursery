@@ -1,0 +1,15 @@
+{
+  "name": "bursry",
+  "version": "1.0.0",
+  "description": "its for bursery log in with id",
+  "main": "server.js",
+  "scripts": {
+    "test": "blue"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.0"
+  }
+}
