@@ -15,14 +15,16 @@ function generateRandomMessageId() {
 function generateRandomMessage(messageId) {
   // Replace this with your own logic to generate different messages based on the message ID.
   // For now, we'll use a simple example with hardcoded messages.
-  const messages = {
-    'ABCD1234': 'Congratulations! Your application is approved.',
-    'WXYZ5678': 'We are still reviewing your application. Please wait for further updates.',
-    'PQRS9876': 'Unfortunately, your application has been rejected.'
-    // Add more message mappings as needed.
-  };
+  const messages = [
+    'Congratulations! Your application is approved.',
+    'We are still reviewing your application. Please wait for further updates.',
+    'Unfortunately, your application has been rejected.',
+    'Your application is under consideration. We will notify you soon.'
+    // Add more messages as needed.
+  ];
 
-  return messages[messageId] || 'Status Not Found';
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  return messages[randomIndex];
 }
 
 // Function to display the popup message
