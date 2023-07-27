@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Applicants Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    /* Add your custom CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    main {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    select, input[type="search"], button {
+      padding: 5px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Your header content here -->
+    <h1>Applicants Dashboard</h1>
+  </header>
+
+  <main>
+    <div>
+      <label for="filter">Filter by Status:</label>
+      <select id="filter" onchange="filterApplicants(this.value)">
+        <option value="all">All</option>
+        <option value="awaiting">Awaiting Approval</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+
+      <label for="search">Search by Name:</label>
+      <input type="search" id="search" oninput="searchApplicants(this.value)">
+    </div>
+
+    <p>Applicants Count:</p>
+    <ul>
+      <li>Awaiting Approval: <span id="count-awaiting">2</span></li>
+      <li>Approved: <span id="count-approved">1</span></li>
+      <li>Rejected: <span id="count-rejected">0</span></li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Applicant Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dummy applicant data -->
+        <tr data-status="awaiting">
+          <td>John Doe</td>
+          <td>
+            <select onchange="changeStatus(this)">
+              <option value="awaiting" selected>Awaiting Approval</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </td>
+        </tr>
+        <tr data-status="awaiting">
+          <td>Jane Smith</td>
+          <td>
+            <select onchange="changeStatus(this)">
+              <option value="awaiting" selected>Awaiting Approval</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </td>
+        </tr>
+        <tr data-status="approved">
+          <td>Mike Johnson</td>
+          <td>
+            <select onchange="changeStatus(this)">
+              <option value="awaiting">Awaiting Approval</option>
+              <option value="approved" selected>Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </td>
+        </tr>
+        <!-- Add more dummy data as needed -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <!-- Your footer content here -->
+    <p>&copy; 2023 Applicants Dashboard. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function changeStatus(selectElement) {
+      const status = selectElement.value;
+      const row = selectElement.parentNode.parentNode;
+      row.dataset.status = status;
+      if (status === "awaiting") {
+        row.style.backgroundColor = "#f2f2f2";
+      } else if (status === "approved") {
+        row.style.backgroundColor = "#9cf29c";
+      } else if (status === "rejected") {
+        row.style.backgroundColor = "#f99999";
+      }
+      updateCount();
+    }
+
+    function filterApplicants(status) {
+      const rows = document.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        if (status === "all" || row.dataset.status === status) {
+          row.style.display = "table-row";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    function searchApplicants(name) {
+      const rows = document.querySelectorAll('tbody tr');
+      name = name.toLowerCase();
+      rows.forEach(row => {
+        const applicantName = row.cells[0].textContent.toLowerCase();
+        if (applicantName.includes(name)) {
+          row.style.display = "table-row";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    function updateCount() {
+      const counts = {
+        awaiting: 0,
+        approved: 0,
+        rejected: 0
+      };
+      const rows = document.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const status = row.dataset.status;
+        counts[status]++;
+      });
+
+      document.getElementById('count-awaiting').textContent = counts.awaiting;
+      document.getElementById('count-approved').textContent = counts.approved;
+      document.getElementById('count-rejected').textContent = counts.rejected;
+    }
+
+    // Initial count update on page load
+    updateCount();
+
+  </script>
+</body>
+</html>
